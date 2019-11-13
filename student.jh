@@ -1,0 +1,17 @@
+entity Student{
+name String  required
+address String required
+age Integer 
+rollNumber Integer required
+dateOfBirth LocalDate
+designation String
+}
+
+
+
+//paginate Job with pagination
+paginate Student with pagination
+dto * with mapstruct
+
+// Set service options to all except few
+service all with serviceImpl
