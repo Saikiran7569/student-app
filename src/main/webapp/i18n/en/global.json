@@ -8,6 +8,8 @@
       "entities": {
         "main": "Entities",
         "student": "Student",
+        "product": "Product",
+        "user1": "User 1",
         "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
       },
       "account": {
