@@ -1,0 +1,119 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+            <h2 id="jhi-product-heading" jhiTranslate="studentApp.product.home.createOrEditLabel">Create or edit a Product</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!editForm.get('id').value">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id" formControlName="id"
+                        readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="studentApp.product.description" for="field_description">Description</label>
+                    <input type="text" class="form-control" name="description" id="field_description"
+                           formControlName="description"/>
+                    <div *ngIf="editForm.get('description').invalid && (editForm.get('description').dirty || editForm.get('description').touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('description').errors.maxlength" jhiTranslate="entity.validation.maxlength" [translateValues]="{ max: 255 }">
+                        This field cannot be longer than 255 characters.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="studentApp.product.hsCode" for="field_hsCode">Hs Code</label>
+                    <input type="text" class="form-control" name="hsCode" id="field_hsCode"
+                           formControlName="hsCode"/>
+                    <div *ngIf="editForm.get('hsCode').invalid && (editForm.get('hsCode').dirty || editForm.get('hsCode').touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('hsCode').errors.maxlength" jhiTranslate="entity.validation.maxlength" [translateValues]="{ max: 20 }">
+                        This field cannot be longer than 20 characters.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="studentApp.product.skuCode" for="field_skuCode">Sku Code</label>
+                    <input type="text" class="form-control" name="skuCode" id="field_skuCode"
+                           formControlName="skuCode"/>
+                    <div *ngIf="editForm.get('skuCode').invalid && (editForm.get('skuCode').dirty || editForm.get('skuCode').touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('skuCode').errors.maxlength" jhiTranslate="entity.validation.maxlength" [translateValues]="{ max: 20 }">
+                        This field cannot be longer than 20 characters.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="studentApp.product.countryOfOrg" for="field_countryOfOrg">Country Of Org</label>
+                    <input type="text" class="form-control" name="countryOfOrg" id="field_countryOfOrg"
+                           formControlName="countryOfOrg"/>
+                    <div *ngIf="editForm.get('countryOfOrg').invalid && (editForm.get('countryOfOrg').dirty || editForm.get('countryOfOrg').touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('countryOfOrg').errors.maxlength" jhiTranslate="entity.validation.maxlength" [translateValues]="{ max: 10 }">
+                        This field cannot be longer than 10 characters.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="studentApp.product.unitPrice" for="field_unitPrice">Unit Price</label>
+                    <input type="number" class="form-control" name="unitPrice" id="field_unitPrice"
+                           formControlName="unitPrice"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="studentApp.product.quantity" for="field_quantity">Quantity</label>
+                    <input type="number" class="form-control" name="quantity" id="field_quantity"
+                           formControlName="quantity"/>
+                    <div *ngIf="editForm.get('quantity').invalid && (editForm.get('quantity').dirty || editForm.get('quantity').touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('quantity').errors.max" jhiTranslate="entity.validation.max" [translateValues]="{ max: 20 }">
+                            This field cannot be more than 20.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.get('quantity')?.errors?.number" jhiTranslate="entity.validation.number">
+                            This field should be a number.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="studentApp.product.itemValue" for="field_itemValue">Item Value</label>
+                    <input type="number" class="form-control" name="itemValue" id="field_itemValue"
+                           formControlName="itemValue"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="studentApp.product.createdDate" for="field_createdDate">Created Date</label>
+                    <div class="d-flex">
+                        <input id="field_createdDate" type="datetime-local" class="form-control" name="createdDate" formControlName="createdDate" placeholder="YYYY-MM-DD HH:mm"/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="studentApp.product.updatedDate" for="field_updatedDate">Updated Date</label>
+                    <div class="d-flex">
+                        <input id="field_updatedDate" type="datetime-local" class="form-control" name="updatedDate" formControlName="updatedDate" placeholder="YYYY-MM-DD HH:mm"/>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="studentApp.product.createdByUser" for="field_createdByUser">Created By User</label>
+                    <select class="form-control" id="field_createdByUser" name="createdByUser" formControlName="createdByUserId">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="userOption.id" *ngFor="let userOption of users; trackBy: trackUserById">{{userOption.id}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="studentApp.product.user2" for="field_user2">User 2</label>
+                    <select class="form-control" id="field_user2" name="user2" formControlName="user2Id">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="user1Option.id" *ngFor="let user1Option of user1s; trackBy: trackUser1ById">{{user1Option.id}}</option>
+                    </select>
+                </div>
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
